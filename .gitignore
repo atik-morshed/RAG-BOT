@@ -8,5 +8,7 @@ __pycache__/
 chroma_data/
 logs/*.jsonl
 logs/*.db
+data/uploads/
+*.egg-info/
 
 .streamlit/secrets.toml

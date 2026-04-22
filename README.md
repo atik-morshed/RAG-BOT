@@ -2,6 +2,27 @@
 
 Minimal RAG chatbot project with FastAPI, Streamlit, Chroma, and local embeddings.
 
+
+## Evaluation Snapshot
+
+### Retrieval Metrics (Current)
+
+| Metric | Value |
+|---|---:|
+| Precision@k | 0.4167 |
+| Recall@k | 0.7500 |
+
+Source: tests/test_retrieval_metrics.py
+
+### RAGAS Score Table
+
+| Variant | Faithfulness | Answer Relevancy | Context Precision | Context Recall |
+|---|---:|---:|---:|---:|
+| Baseline RAG | pending | pending | pending | pending |
+| Optimized RAG (rerank + prompt tuning) | pending | pending | pending | pending |
+
+Use scripts/evaluate_ragas.py after preparing a real evaluation set to replace pending values.
+
 ## Run
 
 1. Install dependencies:
