@@ -1,0 +1,40 @@
+services:
+  chroma:
+    image: chromadb/chroma:0.5.11
+    container_name: rag-chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chroma_data:/chroma/chroma
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: rag-api
+    env_file:
+      - .env
+    environment:
+      CHROMA_MODE: http
+      CHROMA_HOST: chroma
+      CHROMA_PORT: 8000
+    depends_on:
+      - chroma
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    container_name: rag-ui
+    depends_on:
+      - api
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./.streamlit:/app/.streamlit

@@ -1,0 +1,8 @@
+[
+  {
+    "question": "Sample question",
+    "answer": "Sample answer",
+    "contexts": ["Sample context"],
+    "ground_truth": "Sample ground truth"
+  }
+]
