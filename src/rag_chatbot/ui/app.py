@@ -1,13 +1,14 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import httpx
 import streamlit as st
 
-API_BASE_URL = st.secrets.get("api_base_url", "http://api:8001")
-API_KEY = st.secrets.get("api_key", "dev-secret")
-UPLOAD_DIR = Path("data/uploads")
+API_BASE_URL = os.getenv("API_BASE_URL") or st.secrets.get("api_base_url", "http://127.0.0.1:8001")
+API_KEY = os.getenv("RAG_API_KEY") or st.secrets.get("api_key", "dev-secret")
+UPLOAD_DIR = Path(os.getenv("UPLOAD_DIR", "data/uploads"))
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 

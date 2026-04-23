@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: rag-bot
+    env: docker
+    dockerfilePath: ./Dockerfile.deploy
+    autoDeploy: true
+    healthCheckPath: /
+    disk:
+      name: rag-bot-data
+      mountPath: /data
+      sizeGB: 10
+    envVars:
+      - key: LLM_PROVIDER
+        value: openrouter
+      - key: OPENROUTER_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: OPENROUTER_MODEL
+        value: inclusionai/ling-2.6-flash:free
+      - key: CHROMA_MODE
+        value: persistent
+      - key: CHROMA_PERSIST_DIR
+        value: /data/chroma
+      - key: QUERY_LOG_PATH
+        value: /data/logs/query_log.jsonl
+      - key: UPLOAD_DIR
+        value: /data/uploads
+      - key: API_PORT
+        value: 8001
+      - key: PORT
+        value: 8501
+      - key: RAG_API_KEY
+        generateValue: true
+      - key: OPENROUTER_API_KEY
+        sync: false
